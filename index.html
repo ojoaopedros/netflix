@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="netflix.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="netflix.ico" type="image/x-icon">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Quem está assistindo?</h1>
+            <button id="themeToggle" aria-label="Alternar modo claro e escuro">☀️</button>
+        </header>
+        
+        <section class="perfis" aria-label="Seleção de perfis">
+            <ul>
+                <li class="perfil">
+                    <a href="catalogo/catalogo.html">
+                        <img src="assets/perfil-1.jpg" alt="Personagem gótico estilizado com monóculo em um cenário fantasioso de stop-motion inspirado na estética de Tim Burton.">
+                        <h2>João Pedro</h2>
+                    </a>
+                </li>
+                <li class="perfil">
+                    <a href="catalogo/catalogo.html">
+                        <img src="assets/perfil-2.jpg" alt="Imagem de um boné azul">
+                        <h2>Isabel</h2>
+                    </a>
+                </li>
+                <li class="perfil">
+                    <a href="catalogo/catalogo.html">
+                        <img src="assets/drestranho.jpg" alt="Imagem do Doutor Estranho">
+                        <h2>Etinho</h2>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        
+        <button id="gerenciar-perfis">Gerenciar perfis</button>
+    </main>
+
+    <script src="theme.js"></script>
+    <script src="catalogo/js/index.js"></script>
+
+    <script>
+        // Armazenar perfil ativo no localStorage
+        const perfisLinks = document.querySelectorAll('.perfil a');
+        
+        perfisLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const perfilItem = this.closest('.perfil');
+                const nomePerfil = perfilItem.querySelector('h2').textContent;
+                const imagemPerfil = perfilItem.querySelector('img').src;
+                
+                // Armazenar no localStorage
+                localStorage.setItem('perfilAtivo', JSON.stringify({
+                    nome: nomePerfil,
+                    imagem: imagemPerfil
+                }));
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+/* Reset e estilos gerais */
+* {
+    margin: 0; /* remove espaço padrão de margem de todos os elementos */
+    padding: 0; /* remove preenchimento padrão de todos os elementos */
+    box-sizing: border-box; /* inclui borda e padding no tamanho total do elemento */
+}
+
+:root {
+    --background-color: #141414;
+    --text-color: #ffffff;
+    --card-background: transparent;
+    --card-shadow: rgba(0, 0, 0, 0.4);
+    --accent-color: #e50914;
+}
+
+body {
+    background-color: var(--background-color); /* cor de fundo escura similar à Netflix */
+    color: var(--text-color); /* cor do texto padrão no corpo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* fonte principal */
+    min-height: 100vh; /* garante altura mínima 100% da tela */
+    display: flex; /* habilita flexbox para centralizar conteúdo */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: center; /* centraliza horizontalmente */
+}
+
+body.light-mode {
+    --background-color: #f2f2f2;
+    --text-color: #111111;
+    --card-background: rgba(255, 255, 255, 0.1);
+    --card-shadow: rgba(0, 0, 0, 0.2);
+    --accent-color: #d81f1f;
+}
+
+/* Main */
+main {
+    width: 100%; /* ocupa largura total pai */
+    max-width: 90%; /* limita largura máxima para evitar esticar demais */
+    text-align: center; /* centraliza texto */
+}
+
+/* Header */
+header {
+    margin-bottom: 3rem; /* espaço abaixo do cabeçalho */
+    animation: fadeIn 0.8s ease-in; /* animação de entrada suave */
+}
+
+header h1 {
+    font-size: 3rem; /* tamanho grande para título */
+    font-weight: 700; /* peso de fonte mais forte */
+    letter-spacing: 2px; /* espaçamento entre letras */
+    color: var(--text-color); /* cor do texto */
+    text-transform: uppercase; /* texto em maiúsculas */
+    margin-bottom: 1rem; /* separação abaixo do título */
+}
+
+#themeToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 999;
+    padding: 0;
+}
+
+#themeToggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.light-mode #themeToggle {
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.75);
+    color: #111;
+}
+
+.perfil img.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+}
+
+.perfil img {
+    transition: all 0.3s ease, opacity 0.25s ease;
+}
+
+/* Section de Perfis */
+.perfis {
+    animation: slideUp 0.8s ease-out; /* animação de subir */
+}
+
+.perfis > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* flex container para perfis */
+    gap: 2rem; /* espaço entre cards */
+    justify-content: center; /* centraliza cards */
+    align-items: center;
+    flex-wrap: wrap; /* quebra em múltiplas linhas se necessário */
+}
+
+.perfis > ul > li {
+    margin: 0;
+    padding: 0;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.perfil a {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Card do Perfil */
+.perfil {
+    background: var(--card-background); /* sem cor de fundo visível */
+    cursor: pointer; /* cursor de clique */
+    transition: all 0.3s ease; /* anima a mudança de propriedades */
+    max-width: 150px; /* largura máxima fixa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.perfis > ul > li,
+.perfis > ul > li > ol,
+.perfis .perfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfis .perfil {
+    flex-direction: column;
+}
+
+.perfil a {
+    text-decoration: none; /* remove sublinhado do link */
+    display: block; /* faz o link ocupar toda a área */
+}
+
+.perfil img {
+    box-shadow: 0 4px 15px var(--card-shadow);
+}
+
+.perfil:hover img {
+    box-shadow: 0 8px 25px rgba(216, 31, 31, 0.5);
+}
+
+.perfil h2 {
+    color: var(--text-color);
+}
+
+.perfil:hover h2 {
+    color: var(--accent-color);
+}
+
+.perfil img {
+    width: 150px; /* largura da imagem */
+    height: 150px; /* altura da imagem */
+    border-radius: 8px; /* bordas arredondadas */
+    object-fit: cover; /* recorta a imagem para cobrir o contêiner */
+    margin-bottom: 1rem; /* espaço abaixo da imagem */
+    border: 3px solid transparent; /* borda invisível para animar no hover */
+    transition: all 0.3s ease; /* anima mudança de borda e transformação */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* sombra suave ao redor da imagem */
+}
+
+.perfil:hover img {
+    border-color: var(--accent-color); /* borda vermelha no hover */
+    border-width: 3px; /* mantém espessura da borda */
+    transform: scale(1.05); /* leve zoom ao passar o mouse */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* sombra mais forte em hover */
+}
+
+.perfil h2 {
+    font-size: 1.1rem; /* tamanho de fonte do nome do perfil */
+    font-weight: 500; /* peso de fonte médio */
+    color: var(--text-color); /* cor do texto baseada no tema */
+    transition: all 0.3s ease; /* anima a mudança de cor e espaçamento */
+    letter-spacing: 0.5px; /* espaçamento entre letras */
+}
+
+body.light-mode .perfil img {
+    border-color: #111111; /* borda preta no modo claro */
+}
+
+body.light-mode .perfil h2 {
+    color: #111111; /* nome preto no modo claro */
+}
+
+.perfil:hover h2 {
+    color: #e50914; /* cor vermelha quando ativo */
+    font-weight: 600; /* leve aumento de peso */
+    letter-spacing: 1px; /* mais espaçamento em hover */
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* inicia transparente */
+    }
+    to {
+        opacity: 1; /* termina opaco */
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0; /* começa invisível */
+        transform: translateY(30px); /* começa 30px abaixo */
+    }
+    to {
+        opacity: 1; /* termina visível */
+        transform: translateY(0); /* termina na posição original */
+    }
+}
+
+/* Responsividade */
+@media (min-width: 1024px) {
+    body {
+        padding: 2rem 0;
+    }
+
+    main {
+        max-width: 960px; /* desktop */
+    }
+
+    header h1 {
+        font-size: 3.2rem;
+    }
+
+    .perfis {
+        gap: 2.5rem;
+    }
+
+    .perfil img {
+        width: 170px;
+        height: 170px;
+    }
+
+    .perfil h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+    body {
+        padding: 1.5rem 0;
+    }
+
+    main {
+        max-width: 780px; /* tablet landscape */
+    }
+
+    header h1 {
+        font-size: 2.4rem;
+    }
+
+    .perfis {
+        gap: 1.8rem;
+    }
+
+    .perfil img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .perfil h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    body {
+        padding: 1rem;
+    }
+
+    main {
+        max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .perfis {
+        gap: 1.2rem;
+    }
+
+    .perfil img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .perfil h2 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        align-items: flex-start;
+        padding: 0.8rem;
+    }
+
+    main {
+        max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .perfis {
+        gap: 0.9rem;
+    }
+
+    .perfil {
+        max-width: 120px;
+    }
+
+    .perfil img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .perfil h2 {
+        font-size: 0.9rem;
+    }
+}
+
+/* Botão Gerenciar Perfis */
+#gerenciar-perfis {
+    margin-top: 2rem; /* espaço acima do botão */
+    padding: 0.75rem 1.5rem; /* preenchimento interno */
+    background-color: transparent; /* fundo transparente */
+    color: var(--text-color); /* cor do texto */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* borda sutil */
+    border-radius: 4px; /* bordas arredondadas */
+    font-size: 1rem; /* tamanho da fonte */
+    font-weight: 500; /* peso da fonte */
+    cursor: pointer; /* cursor de clique */
+    transition: all 0.3s ease; /* animação suave */
+    text-transform: uppercase; /* texto em maiúsculas */
+    letter-spacing: 0.5px; /* espaçamento entre letras */
+}
+
+#gerenciar-perfis:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* fundo leve no hover */
+    border-color: var(--accent-color); /* borda vermelha no hover */
+    color: var(--accent-color); /* cor vermelha no hover */
+}
+
+body.light-mode #gerenciar-perfis {
+    border-color: rgba(0, 0, 0, 0.3); /* borda mais escura no modo claro */
+    color: var(--text-color);
+}
+
+body.light-mode #gerenciar-perfis:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* fundo leve no hover no modo claro */
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
